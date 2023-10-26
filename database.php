@@ -17,6 +17,7 @@ $resultQuery = $conn->query($sqlQuery);
 print_r($resultQuery->fetch_all());
 $deleteQuery = "delete from user where name='User2' and password = 'User 3 password'";
 $resultQuery = $conn->query($deleteQuery);
+
 $isQuery = "SELECT * FROM user WHERE name = 'Shafa' AND password = 'pass 2'";
 $resultQuery = $conn->query($isQuery);
 
