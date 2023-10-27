@@ -60,15 +60,7 @@ if (isset($_GET['action'])) {
     if ($password === '') {
         $passwordError .= 'Password bos buraxilmamalidi <br>';
     }
-    if (!$passwordToUpper) {
-        $passwordError .= 'Passwordun ilk herfi boyuk herf olmalidi <br>';
-    }
-    if (strlen($password) < 5 && $password !== '') {
-        $passwordError .= 'Passwordun uzunlugu 5 den boyuk olmalidi <br>';
-    }
-    if (strlen($password) > 8 && $password !== '') {
-        $passwordError .= 'Passwordun uzunlugu 8 den kicik olmalidi <br>';
-    }
+
 
 
     $conn = new mysqli($servername, $username, $serverpassword, $dbname);
@@ -188,7 +180,7 @@ if (isset($_GET['action'])) {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%,-50%);
             width: 50%;
             height: 200px;
             font-size: 54px;
@@ -210,6 +202,7 @@ if (isset($_GET['action'])) {
 </head>
 <body>
 <form action="" method="get" id="myForm">
+    <h2>Login  Form </h2>
     <label for="email"> Emaili daxil edin:
         <input id="email" name="email">
     </label>
@@ -224,6 +217,7 @@ if (isset($_GET['action'])) {
 
 
 <form action="" method="get" id="myForm2">
+    <h2>Sign Up Form </h2>
     <label for="name"> İstifadəçi adınızı daxil edin:
         <input id="name" name="name">
     </label>
@@ -270,9 +264,13 @@ if (isset($_GET['action'])) {
             success: (res) => {
                 console.log(res)
                 if (res.success) {
+                    var emailValue = $('#email').val();
+                    var passwordValue = $('#password').val();
+                    var combinedValue = 'Email: ' + emailValue + " " + '<br>Password: ' + passwordValue;
+
+                    $('div').html(combinedValue);
                     $('#myForm').css('display', 'none');
                     $('div').css('display', 'block');
-                    $('div').html('Təbriklər sehifeye giriş etdiniz')
                     $('#errorPassword').html('');
 
                 } else {
@@ -376,6 +374,10 @@ if (isset($_GET['action'])) {
     $('#btnSignUp').on('click', () => {
         $('#myForm').css('display', 'none');
         $('#myForm2').css('display', 'block');
+    })
+    $('#btn2').on('click', () => {
+        $('#myForm').css('display', 'block');
+        $('#myForm2').css('display', 'none');
     })
 
 
