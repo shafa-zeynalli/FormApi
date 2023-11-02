@@ -39,8 +39,7 @@ class Database
     }
     public function connStop()
     {
-        $query= $this->conn->close();
-        return $query;
+       return $this->conn->close();
     }
 
 
@@ -64,12 +63,29 @@ class Database
     public function fetchAll(){
       return $this->conn->query($this->result)->fetch_all();
     }
-    public function where(){
-        $this -> result .= "where ";
+    public function where($arr){
+        $this -> result .= 'where ';
+        $conditions = [];
+        foreach ($arr as $key=>$value){
+            $conditions[]= "$key='$value'";
+            echo 'kjdkcdscsdcsadcsdkjmc';
+            print_r($conditions);
+        }
+        $this->result.=implode(' and ', $conditions);
+        print_r($this->result);
+
         return $this;
     }
-    public function andWhere(){
-        $this -> result .= "and ";
+    public function andWhere($arr){
+        $this -> result .= 'where ';
+        $conditions = [];
+
+        foreach ($arr as $x){
+            $conditions[]= "$x[0] $x[1] '$x[2]'";
+        }
+        $this->result.=implode(" and ", $conditions);
+        print_r($this->result);
+
         return $this;
     }
     public function orWhere(){

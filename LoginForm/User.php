@@ -15,10 +15,17 @@ echo '<pre>';
 print_r(
     $user->select('*')
          ->getTable()
-         ->where()
-         ->condition("password='Scccvv' ")
-         ->andWhere()
-         ->condition('name="d" ')
+//         ->where([
+//             'password' => "Scccvv",
+//             'name' => "d"
+//         ])
+//         ->condition("password='Scccvv' ")
+         ->andWhere([
+             ['id', '>', '40'],
+             ['id', '<', '46'],
+             ['password', '=', 'Scccvv']
+         ])
+//         ->condition('name="d" ')
          ->limit(3)
          ->fetchAll()
 );
